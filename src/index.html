@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>XSS test</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    /* CSS Custom Properties AKA Variables */
+    :root {
+      --color-primary: hsl(218, 14%, 16%);
+      --color-primary--light: hsl(218, 24%, 40%);
+      --color-primary--dark: hsl(218, 8%, 10%);
+
+      --color-secondary: hsl(95, 38%, 62%);
+      --color-secondary--light: hsl(95, 48%, 75%);
+      --color-secondary--dark: hsl(95, 28%, 42%);
+
+      --color-accent: hsl(355, 59%, 63%);
+      --color-accent--light: hsl(355, 69%, 73%);
+      --color-accent--dark: hsl(355, 38%, 48%);
+
+      --shadow: 0 0.25rem 0.75rem #0004;
+
+      --radius: 0.5em;
+    }
+
+    ul {
+      list-style: none;
+      padding-left: 1rem;
+    }
+
+    .products ul {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      padding-left: 0;
+    }
+
+    .products li {
+      text-align: center;
+      border: 0.125rem solid #ccc;
+      border-radius: 0.5rem;
+      margin: 1rem;
+      padding: 1rem;
+    }
+
+    .product__name {
+      font-size: 1.5rem;
+    }
+
+    .product__price {
+      margin-top: 1rem;
+      font-weight: bold;
+      font-size: 1.5rem;
+    }
+
+    .container {
+      width: min(100%, 45em);
+      margin: 0 auto;
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+    }
+
+    .input {
+      margin: 0 1rem;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .total {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      align-items: center;
+      font-size: 2rem;
+    }
+
+
+
+    /* Button */
+    .btn {
+      /* common styles */
+      display: inline-block;
+      padding: 0.55em 1.5em 0.5em;
+      background-color: var(--color-primary);
+      border: 0.125rem solid var(--color-primary);
+      color: #fff;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      text-align: center;
+      text-decoration: none;
+      cursor: pointer;
+      font-family: inherit;
+      font-size: inherit;
+
+      &:is(:hover, :focus) {
+        background-color: var(--color-primary--dark);
+        border-color: var(--color-primary--dark);
+        color: #fff;
+      }
+    }
+
+    .btn--secondary {
+      background-color: var(--color-secondary);
+      border-color: var(--color-secondary);
+      color: var(--color-primary);
+    }
+
+    input {
+      width: 30rem;
+      height: 2rem;
+    }
+
+    .changed {
+      color: var(--color-accent--dark);
+    }
+  </style>
+</head>
+
+<body>
+
+  <section>
+    <div class="container">
+      <h1>Reflect Xss</h1>
+      <ol>
+        <li>Click add to add products</li>
+        <li>Enter a keyword in the search box to perform a search.</li>
+        <li>try &lt;script&gt;alert(1)&lt;/script&gt;</li>
+        <li>try &lt;script src='/xss' /&gt;</li>
+      </ol>
+
+
+      <div class="input">
+        <input id="search" placeholder="Please enter search keywords" />
+        <button class="btn" id="searchBtn">Search</button>
+      </div>
+
+      <div class="products">
+        <ul>
+          <li>
+            <div class="product__name">item A</div>
+            <div class="product__price">$25</div>
+          </li>
+          <li>
+
+            <div class="product__name">item B</div>
+            <div class="product__price">$25</div>
+          </li>
+          <li>
+            <div class="product__name">item C</div>
+            <div class="product__price">$25</div>
+          </li>
+          <li>
+            <div class="product__name">item D</div>
+            <div class="product__price">$25</div>
+          </li>
+        </ul>
+      </div>
+
+
+      <div class="total">
+        <span>Total: $
+          <span id="total">100</span>
+        </span>
+        <a href="https://www.google.com/" target="_blank" id="pay" class="btn">Pay</a>
+      </div>
+      <h3><!-- SEARCH --></h3>
+
+    </div>
+
+  </section>
+
+
+  <script src="/js"></script>
+</body>
+
+</html>
