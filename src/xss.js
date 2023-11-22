@@ -1,3 +1,4 @@
+// * step 3
 console.log(document);
 console.log(window);
 console.log(document.cookie);

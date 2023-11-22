@@ -1,3 +1,4 @@
+// * step 1 && step 2
 const search = document.getElementById('search');
 const searchBtn = document.getElementById('searchBtn');
 

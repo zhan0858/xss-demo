@@ -128,9 +128,8 @@
 
   <section>
     <div class="container">
-      <h1>Reflect Xss</h1>
+      <h1>Xss</h1>
       <ol>
-        <li>Click add to add products</li>
         <li>Enter a keyword in the search box to perform a search.</li>
         <li>try &lt;script&gt;alert(1)&lt;/script&gt;</li>
         <li>try &lt;script src='/xss' /&gt;</li>
@@ -139,7 +138,7 @@
 
       <div class="input">
         <input id="search" placeholder="Please enter search keywords" />
-        <button class="btn" id="searchBtn">Search</button>
+        <button class="btn" id="searchBtn">Add</button>
       </div>
 
       <div class="products">
